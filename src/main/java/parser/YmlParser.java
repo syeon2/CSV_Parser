@@ -8,14 +8,25 @@ import java.util.Map;
 
 import org.yaml.snakeyaml.Yaml;
 
+import dto.DBConnectDTO;
+
 public class YmlParser {
 
-	public static Map<String, Object> parsingYml(String path) {
+	public static DBConnectDTO getYmlEnv(String path) {
+		Map<String, Object> getDBEnv = readYmlFile(path);
+		Map<String, String> dbKeys = (Map<String, String>) getDBEnv.get(DBConnectDTO.DB_KEY);
+
+		return new DBConnectDTO(
+			dbKeys.get(DBConnectDTO.URL_KEY),
+			dbKeys.get(DBConnectDTO.USER_KEY),
+			dbKeys.get(DBConnectDTO.PASSWORD_KEY));
+	}
+
+	private static Map<String, Object> readYmlFile(String path) {
 		try (InputStream input = new FileInputStream(new File(path))) {
 			Yaml yaml = new Yaml();
-			Map<String, Object> data = yaml.load(input);
 
-			return data;
+			return yaml.load(input);
 		} catch (IOException e) {
 			throw new RuntimeException(e);
 		}
