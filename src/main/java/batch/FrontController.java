@@ -9,7 +9,7 @@ import dto.DBConnectDTO;
 import parser.CSVParser;
 import parser.YmlParser;
 
-public class FrontBatch {
+public class FrontController {
 
 	private final String YML_PATH = "application-db.yml";
 
@@ -18,15 +18,15 @@ public class FrontBatch {
 		List<CustomerDTO> convertedCSV = CSVParser.getCsvList(filePath);
 
 		String sql = "insert into customers "
-			+ "(" + COLUMNS.get(1) + ", "
-			+ COLUMNS.get(2) + ", "
-			+ COLUMNS.get(3) + ", "
-			+ COLUMNS.get(4) + ", "
-			+ COLUMNS.get(5) + ", "
-			+ COLUMNS.get(6) + ", "
-			+ COLUMNS.get(7) + ", "
-			+ COLUMNS.get(8) + ", "
-			+ COLUMNS.get(9) + ") "
+			+ "(" + ID + ", "
+			+ ORGANIZATION_ID + ", "
+			+ NAME + ", "
+			+ WEBSITE + ", "
+			+ COUNTRY + ", "
+			+ DESCRIPTION + ", "
+			+ FOUNDED + ", "
+			+ INDUSTRY + ", "
+			+ NUMBER_OF_EMPLOYEES + ") "
 			+ "values (?, ?, ?, ?, ?, ?, ?, ?, ?)";
 
 		BatchService batchService = new BatchServiceDeco(dbConnectResource);

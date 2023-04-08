@@ -1,10 +1,10 @@
-import batch.FrontBatch;
+import batch.FrontController;
 
 public class Main {
 	public static void main(String[] args) {
-		FrontBatch batch = new FrontBatch();
+		FrontController batch = new FrontController();
 
 		// String filePath = args[0];
-		batch.startBatch("organizations-2000000.csv");
+		batch.startBatch("organizations-100.csv");
 	}
 }

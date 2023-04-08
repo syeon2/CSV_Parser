@@ -26,7 +26,7 @@ public class CSVParser {
 
 			while ((line = br.readLine()) != null) {
 				String[] columns = line.split(",");
-				CustomerDTO dto = new CustomerDTO(columns);
+				CustomerDTO dto = CustomerDTO.parse(columns);
 
 				rows.add(dto);
 			}
